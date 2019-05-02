@@ -23,7 +23,8 @@ We would love contributions from everyone. Some general guidelines are:
 * Write neat code with proper comments.
 * Follow PEP8 coding style.
 * Write tests wherever necessary.
-* Write descriptive commit messages.<br />
+* Write descriptive commit messages.
+
 For any more information contact [akshatkarani](https://github.com/akshatkarani)
 
 ## Legal
