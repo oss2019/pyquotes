@@ -10,7 +10,7 @@ The idea is to use scrap the quotes from [BrainyQuote](https://www.brainyquote.c
 To get started with this you can watch a small tutorial [here](https://www.youtube.com/watch?v=ng2o98k983k).<br />
 Functionalities to be supported are:
 * Get quotes from particular topic, categories.
-* Get quotes from particular author.
+* Get quotes from particular person.
 
 ### Phase 2
 Convert this into a pip package.
