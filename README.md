@@ -25,6 +25,7 @@ We would love contributions from everyone. Some general guidelines are:
 * Write tests wherever necessary.
 * Write descriptive commit messages.
 * It is recommended to have a single commit for a task.
+* Please see that all the tests are passing before asking for a review on a PR.
 
 For any more information contact [akshatkarani](https://github.com/akshatkarani)
 
