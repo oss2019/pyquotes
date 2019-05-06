@@ -8,7 +8,7 @@ parent_link = "https://www.quoteload.com"
 day_quote = "https://www.brainyquote.com/quote_of_the_day"
 
 
-def get_quotes(person: (None, str)=None, category: (None, str)=None):
+def get_quotes(person: (None, str) = None, category: (None, str)=None):
     # function called without any argument:
     if isinstance(person, type(None)) and isinstance(category, type(None)):
         print('too few arguments to get quotes')
@@ -41,7 +41,7 @@ def get_quotes(person: (None, str)=None, category: (None, str)=None):
     return result  # a list of tuples
 
 
-def get_quote(person: (None, str)=None, category: (None, str)=None):
+def get_quote(person: (None, str) = None, category: (None, str)=None):
     lst = get_quotes(person=person, category=category)
     return lst[random.randint(0, len(lst))]
 
