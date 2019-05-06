@@ -24,6 +24,7 @@ We would love contributions from everyone. Some general guidelines are:
 * Follow PEP8 coding style.
 * Write tests wherever necessary.
 * Write descriptive commit messages.
+* It is recommended to have a single commit for a task.
 
 For any more information contact [akshatkarani](https://github.com/akshatkarani)
 
