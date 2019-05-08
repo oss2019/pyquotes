@@ -4,8 +4,6 @@ import random
 
 # website used :
 parent_link = "https://www.quoteload.com"
-# for quote of the day :
-day_quote = "https://www.brainyquote.com/quote_of_the_day"
 
 
 def get_quotes(person: (None, str) = None, category: (None, str) = None):
@@ -45,16 +43,3 @@ def get_quote(person: (None, str) = None, category: (None, str) = None):
     lst = get_quotes(person=person, category=category)
     return lst[random.randint(0, len(lst))]
 
-
-def quote_of_the_day():
-    link = requests.get(day_quote).text
-    soup_obj = BeautifulSoup(link, 'lxml')
-    quote = soup_obj.find('div', class_='clearfix').find(
-        'a', title='view quote').text
-    author = soup_obj.find('div', class_='clearfix').find(
-        'a', title='view author').text
-    return (quote, author)
-
-
-# print(get_quote(person="mahatma gandhi",category="legal"))
-print(quote_of_the_day())
