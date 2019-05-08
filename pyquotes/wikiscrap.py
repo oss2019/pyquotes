@@ -43,4 +43,3 @@ author_for_quote_of_the_day = path_for_quote_of_the_day[1].td.a.text
 
 def get_quote_of_the_day():
     return (quote_of_the_day, author_for_quote_of_the_day)
-
