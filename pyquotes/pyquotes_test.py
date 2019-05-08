@@ -62,11 +62,8 @@ def get_quotes(person, category):
         big_list.append(quote_list)
 
     if len(quote_list) == 0:
-        
         return("Oops! It seems that there are no quotes of the author of that category.\nYou may consider changing the category or the author ")
-    
     quote_list.append(person)
-    
     return(quote_list)
 
 
@@ -109,9 +106,9 @@ def get_quote_of_the_day():
     soup = BeautifulSoup(response.content, 'html5lib')
     a_tags = soup.findAll('img', alt=True)  
     # Getting all the a tags of the page.
-    quote_of_the_day_atag = str( a_tags[0])  
+    quote_of_the_day_atag = str(a_tags[0])  
     # Grabbing the first a tag of the page
-    matches=re.findall(r'\"(.+?)\"', quote_of_the_day_atag)  
+    matches=re.findall(r'\"(.+?)\"',  quote_of_the_day_atag)  
     # A regular expression which gives a list of all text that is in between quotes.
     quote_author_split_list = str(matches[0]).split('-')  
     #  Get a list of quote_of_the_day and the author
