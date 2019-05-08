@@ -18,13 +18,13 @@ def get_quotes(person):
             q = soup_for_indiv.find_all('div', class_='mw-parser-output')[0]
             quotes = q.find_all('ul')
             for quote in quotes:
-                try:     
-                    if quote.li.b is None:                  
+                try:
+                    if quote.li.b is None:
                         continue
-                    elif quote.li.b.text.isdigit():    
+                    elif quote.li.b.text.isdigit():
                         continue
-                    elif len(quote.li.b.text.split(' ')) < 2:  
-                        continue    
+                    elif len(quote.li.b.text.split(' ')) < 2:
+                        continue
                     else:
                         temp = [quote.li.b.text, name.text]
                         quotes_by_author.append(tuple(temp))
