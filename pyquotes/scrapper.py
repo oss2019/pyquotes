@@ -117,6 +117,7 @@ def selection_general(quotes, authors):
         del pair
     return quotes_and_authors
 
+
 def crawler(user_author=None, user_topic=None):
     try:
         authors = []
