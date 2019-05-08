@@ -117,13 +117,6 @@ def selection_general(quotes, authors):
         del pair
     return quotes_and_authors
 
-
-#def display_quotes(quotes_and_authors):
-#    for tup in quotes_and_authors:
-#        print(tup[0]+" - "+tup[1])
-#        print('\n')
-
-
 def crawler(user_author=None, user_topic=None):
     try:
         authors = []
