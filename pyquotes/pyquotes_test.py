@@ -12,12 +12,12 @@ import random
 # This function returns the link to be scraped for the author.
 # For example if the author is Bill Gates then url at brainyquote will be "https://www.brainyquote.com/authors/bill_gates"
 
-
 def get_author_link(person):
     author_name = person.lower()
     author_name_split = author_name.split(' ')
     author_url_link = ''
     count = 0
+    
     for i in author_name_split:
         author_url_link += i
         count += 1
@@ -25,22 +25,23 @@ def get_author_link(person):
             author_url_link += '_'
 
         author_url_link = author_url_link.replace('.', '_')
+    
     return author_url_link
 
+
 def get_quotes(person, category):
-
     """
-     This function returns all the quotes that matches the input.
+    This function returns all the quotes that matches the input.
 
-     :param person:	 Name of the person e.g. Albert Einstein
-     :param category: Category of quote e.g. Motivational
-     :param return:   List of tuples [(quote, author_of_the_quote), ..]
-     """
+    :param person:	 Name of the person e.g. Albert Einstein
+    :param category: Category of quote e.g. Motivational
+    :param return:   List of tuples [(quote, author_of_the_quote), ..]
+    """
     author_name = person
     URL = "https://www.brainyquote.com/authors/" + get_author_link(person)
     respone_author = requests.get(URL)
     soup_author = BeautifulSoup(respone_author.content, 'html5lib')
-    categories = soup_author.find_all('div', class_ = 'kw-box')
+    categories = soup_author.find_all('div', class_='kw-box')
     check = False
     count = 0
     for i in categories:
@@ -52,23 +53,24 @@ def get_quotes(person, category):
             count += 1
 
     # Getting the quote of the related author
-    get_quote = soup_author.find_all('a', attrs = {'title':'view quote'})
+    get_quote = soup_author.find_all('a', attrs={'title':'view quote'})
 
     quote_list = []
     big_list = []
     for i in range(count):
         quote_list.append(get_quote[i].text)
-
         big_list.append(quote_list)
 
     if len(quote_list) == 0:
+        
         return("Oops! It seems that there are no quotes of the author of that category.\nYou may consider changing the category or the author ")
+    
     quote_list.append(person)
+    
     return(quote_list)
 
 
 def get_quote(person, category):
-
     """
     This function take a category and a person as a input and returns
     a random quote which matches the input.
@@ -105,14 +107,20 @@ def get_quote_of_the_day():
     response = requests.get(URL)
 
     soup = BeautifulSoup(response.content, 'html5lib')
-    a_tags = soup.findAll('img', alt=True)  # Getting all the a tags of the page.
-    quote_of_the_day_atag = str( a_tags[0])  # Grabbing the first a tag of the page
-    matches=re.findall(r'\"(.+?)\"', quote_of_the_day_atag)  # A regular expression which gives a list of all text that is in between quotes.
-    quote_author_split_list = str(matches[0]).split('-')  #  Get a list of quote_of_the_day and the author
+    a_tags = soup.findAll('img', alt=True)  
+    # Getting all the a tags of the page.
+    quote_of_the_day_atag = str( a_tags[0])  
+    # Grabbing the first a tag of the page
+    matches=re.findall(r'\"(.+?)\"', quote_of_the_day_atag)  
+    # A regular expression which gives a list of all text that is in between quotes.
+    quote_author_split_list = str(matches[0]).split('-')  
+    #  Get a list of quote_of_the_day and the author
     quote_of_the_day = matches[0].replace(quote_author_split_list[-1], '')
     quote_of_the_day = quote_of_the_day.replace('-', '')
-    author_name = quote_author_split_list[-1]  # Gives the author_name
-    author_name = author_name.replace(' ', '')  # Removes any extra space
+    author_name = quote_author_split_list[-1]  
+    # Gives the author_name
+    author_name = author_name.replace(' ', '')  
+    # Removes any extra space
     list = (quote_of_the_day, author_name)
 
     return list
