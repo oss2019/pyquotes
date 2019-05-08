@@ -15,10 +15,11 @@ def get_quotes(person):
             link = "https://en.wikiquote.org" + name['href']
             link = requests.get(link).text
             soup_for_indiv = BeautifulSoup(link, "lxml")
-            quotes = soup_for_indiv.find_all('div', class_='mw-parser-output')[0].find_all('ul')
+            q = soup_for_indiv.find_all('div', class_='mw-parser-output')[0]
+            quotes = q.find_all('ul')
             for quote in quotes:
-                try: 
-                    if quote.li.b is None:                   
+                try:     
+                    if quote.li.b is None:                  
                         continue
                     elif quote.li.b.text.isdigit():    
                         continue
@@ -33,12 +34,13 @@ def get_quotes(person):
             continue
     return quotes_by_author
 
-#scrapping for quote of the day
-path_for_quote_of_the_day = soup.find_all('table')[2].find_all('tbody')[2].find_all('tr')
+# scrapping for quote of the day
+path_0_for_quote_of_the_day = soup.find_all('table')[2].find_all('tbody')[2]
+path_for_quote_of_the_day = path_0_for_quote_of_the_day.find_all('tr')
 quote_of_the_day = path_for_quote_of_the_day[0].td.text
 author_for_quote_of_the_day = path_for_quote_of_the_day[1].td.a.text
-quote_of_the_day_tuple = (quote_of_the_day.rstrip(),author_for_quote_of_the_day) 
+
 
 def get_quote_of_the_day():
-    return quote_of_the_day_tuple
+    return (quote_of_the_day, author_for_quote_of_the_day)
 
