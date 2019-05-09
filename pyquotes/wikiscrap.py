@@ -36,8 +36,8 @@ def get_quotes(person):
 
 
 def get_quote_of_the_day():
-    path_0_for_quote_of_the_day = soup.find_all('table')[2].find_all('tbody')[2]
-    path_for_quote_of_the_day = path_0_for_quote_of_the_day.find_all('tr')
+    p = soup.find_all('table')[2].find_all('tbody')[2]
+    path_for_quote_of_the_day = p.find_all('tr')
     quote_of_the_day = path_for_quote_of_the_day[0].td.text
     author_for_quote_of_the_day = path_for_quote_of_the_day[1].td.a.text
     return (quote_of_the_day, author_for_quote_of_the_day)
