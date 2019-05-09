@@ -53,6 +53,7 @@ def get_quotes(person, category):
             count += 1
 
     # Getting the quote of the related author
+    
     get_quote = soup_author.find_all('a', attrs={'title':'view quote'})
 
     quote_list = []
@@ -106,16 +107,21 @@ def get_quote_of_the_day():
     soup = BeautifulSoup(response.content, 'html5lib')
     a_tags = soup.findAll('img', alt=True)  
     # Getting all the a tags of the page.
+    
     quote_of_the_day_atag = str(a_tags[0])  
     # Grabbing the first a tag of the page
+    
     matches=re.findall(r'\"(.+?)\"',  quote_of_the_day_atag)  
     # A regular expression which gives a list of all text that is in between quotes.
+    
     quote_author_split_list = str(matches[0]).split('-')  
     #  Get a list of quote_of_the_day and the author
+    
     quote_of_the_day = matches[0].replace(quote_author_split_list[-1], '')
     quote_of_the_day = quote_of_the_day.replace('-', '')
     author_name = quote_author_split_list[-1]  
     # Gives the author_name
+    
     author_name = author_name.replace(' ', '')  
     # Removes any extra space
     list = (quote_of_the_day, author_name)
