@@ -10,14 +10,16 @@ import re
 import random
 
 # This function returns the link to be scraped for the author.
-# For example if the author is Bill Gates then url at brainyquote will be "https://www.brainyquote.com/authors/bill_gates"
+# For example if the author is Bill Gates then url at brainyquote
+# will be "https://www.brainyquote.com/authors/bill_gates"
+
 
 def get_author_link(person):
     author_name = person.lower()
     author_name_split = author_name.split(' ')
     author_url_link = ''
     count = 0
-    
+
     for i in author_name_split:
         author_url_link += i
         count += 1
@@ -25,7 +27,7 @@ def get_author_link(person):
             author_url_link += '_'
 
         author_url_link = author_url_link.replace('.', '_')
-    
+
     return author_url_link
 
 
@@ -60,10 +62,12 @@ def get_quotes(person, category):
         quote_list.append(get_quote[i].text)
         big_list.append(quote_list)
 
-    if len(quote_list)==0:
-        return("Oops! It seems that there are no quotes of the author of that category.\nYou may consider changing the category or the author ")
+    if len(quote_list) == 0:
+        return('''Oops! It seems that there are no quotes of the author of that
+                category.
+                \nYou may consider changing the category or the author ''')
     quote_list.append(person)
-    
+
     return(quote_list)
 
 
@@ -78,7 +82,8 @@ def get_quote(person, category):
     """
     quotes = get_quotes(person, category)
     length = len(quotes)
-    if(length==0):  # In case no quote of the author exist for that category.
+    if(length == 0):
+        # In case no quote of the author exist for that category.
         return("No quotes found of that category")
     else:
         random_number = random.randint(0, length-1)
@@ -88,7 +93,7 @@ def get_quote(person, category):
 
         return(tuple(list))
 
-    
+
 def get_quote_of_the_day():
     """
     This fuction returns quote of the day.
@@ -98,28 +103,30 @@ def get_quote_of_the_day():
     URL = "https://www.brainyquote.com/quote_of_the_day"
     list = []
 
-    # Sending a HTTP request to the specified URL and saving the response from server in a response object called response.
+    # Sending a HTTP request to the specified URL and saving the response
+    # from server in a response object called response.
     response = requests.get(URL)
     soup = BeautifulSoup(response.content, 'html5lib')
-    a_tags = soup.findAll('img', alt=True)  
-    
+    a_tags = soup.findAll('img', alt=True)
+
     # Getting all the a tags of the page.
-    quote_of_the_day_atag = str(a_tags[0])  
-    
+    quote_of_the_day_atag = str(a_tags[0])
+
     # Grabbing the first a tag of the page
-    matches = re.findall(r'\"(.+?)\"', quote_of_the_day_atag)  
-    
-    # A regular expression which gives a list of all text that is in between quotes.
-    quote_author_split_list = str(matches[0]).split('-')  
-    
+    matches = re.findall(r'\"(.+?)\"', quote_of_the_day_atag)
+
+    # A regular expression which gives a list of all
+    # text that is in between quotes.
+    quote_author_split_list = str(matches[0]).split('-')
+
     #  Get a list of quote_of_the_day and the author
     quote_of_the_day = matches[0].replace(quote_author_split_list[-1], '')
     quote_of_the_day = quote_of_the_day.replace('-', '')
-    author_name = quote_author_split_list[-1]  
-    
+    author_name = quote_author_split_list[-1]
+
     # Gives the author_name
-    author_name = author_name.replace(' ', '')  
-    
+    author_name = author_name.replace(' ', '')
+
     # Removes any extra space
     list = (quote_of_the_day, author_name)
 
