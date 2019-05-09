@@ -42,4 +42,3 @@ def get_quotes(person: (None, str) = None, category: (None, str) = None):
 def get_quote(person: (None, str) = None, category: (None, str) = None):
     lst = get_quotes(person=person, category=category)
     return lst[random.randint(0, len(lst))]
-
