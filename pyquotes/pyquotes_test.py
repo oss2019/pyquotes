@@ -107,7 +107,7 @@ def get_quote_of_the_day():
     quote_of_the_day_atag = str(a_tags[0])  
     
     # Grabbing the first a tag of the page
-    matches=re.findall(r'\"(.+?)\"', quote_of_the_day_atag)  
+    matches = re.findall(r'\"(.+?)\"', quote_of_the_day_atag)  
     
     # A regular expression which gives a list of all text that is in between quotes.
     quote_author_split_list = str(matches[0]).split('-')  
