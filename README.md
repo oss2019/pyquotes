@@ -6,7 +6,7 @@ This is a API in python3 to get quotes.
 
 ## Plan
 ### Phase 1
-The idea is to use scrap the quotes from [BrainyQuote](https://www.brainyquote.com/). We will use [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) for this.<br />
+The idea is to use scrap the quotes from various websites ([BrainyQuote](https://www.brainyquote.com/),[quoteload](https://www.quoteload.com/)). We will use [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) for this.<br />
 To get started with this you can watch a small tutorial [here](https://www.youtube.com/watch?v=ng2o98k983k).<br />
 Functionalities to be supported are:
 * Get quotes from particular topic, categories.
@@ -24,6 +24,8 @@ We would love contributions from everyone. Some general guidelines are:
 * Follow PEP8 coding style.
 * Write tests wherever necessary.
 * Write descriptive commit messages.
+* It is recommended to have a single commit for a task.
+* Please see that all the tests are passing before asking for a review on a PR.
 
 For any more information contact [akshatkarani](https://github.com/akshatkarani)
 
