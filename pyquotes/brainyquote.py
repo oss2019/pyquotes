@@ -38,6 +38,8 @@ def get_quotes(person, category):
     respone_author = requests.get(URL)
     soup_author = BeautifulSoup(respone_author.content, 'html5lib')
     categories = soup_author.find_all('div', class_='kw-box')
+    category = category.lower()
+    person = person.lower()
     check = False
     count = 0
     for i in categories:
@@ -51,16 +53,16 @@ def get_quotes(person, category):
     # Getting the quote of the related author
     get_quote = soup_author.find_all('a', attrs={'title': 'view quote'})
     quote_list = []
-    big_list = []
     for i in range(count):
-        quote_list.append(get_quote[i].text)
-        big_list.append(quote_list)
+        quote_tuple = []
+        quote_tuple.append(get_quote[i].text)
+        quote_tuple.append(person)
+        quote_list.append(tuple(quote_tuple))
+
+    error_message = '''Oops! It seems that there are no quotes of the author of that category. \nYou may consider changing the category or the author '''
 
     if len(quote_list) == 0:
-        return('''Oops! It seems that there are no quotes of the author of that
-                category.
-                \nYou may consider changing the category or the author ''')
-    quote_list.append(person)
+        return(error_message)
 
     return(quote_list)
 
@@ -76,14 +78,15 @@ def get_quote(person, category):
     """
     quotes = get_quotes(person, category)
     length = len(quotes)
-    if(length == 0):
+    error_message = '''Oops! It seems that there are no quotes of the author of that category. \nYou may consider changing the category or the author '''
+
+    if(quotes == error_message):
         # In case no quote of the author exist for that category.
-        return("No quotes found of that category")
+        return(error_message)
     else:
         random_number = random.randint(0, length - 1)
         list = []
         list.append(quotes[random_number])
-        list.append(person)
 
         return(tuple(list))
 
