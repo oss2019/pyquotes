@@ -15,15 +15,16 @@ def get_quotes(person):
             link = "https://en.wikiquote.org" + name['href']
             link = requests.get(link).text
             soup_for_indiv = BeautifulSoup(link, "lxml")
-            quotes = soup_for_indiv.find_all('div', class_='mw-parser-output')[0].find_all('ul')
+            q = soup_for_indiv.find_all('div', class_='mw-parser-output')[0]
+            quotes = q.find_all('ul')
             for quote in quotes:
-                try: 
-                    if quote.li.b is None:                   
+                try:
+                    if quote.li.b is None:
                         continue
-                    elif quote.li.b.text.isdigit():    
+                    elif quote.li.b.text.isdigit():
                         continue
-                    elif len(quote.li.b.text.split(' ')) < 2:  
-                        continue    
+                    elif len(quote.li.b.text.split(' ')) < 2:
+                        continue
                     else:
                         temp = [quote.li.b.text, name.text]
                         quotes_by_author.append(tuple(temp))
@@ -33,12 +34,11 @@ def get_quotes(person):
             continue
     return quotes_by_author
 
-#scrapping for quote of the day
-path_for_quote_of_the_day = soup.find_all('table')[2].find_all('tbody')[2].find_all('tr')
-quote_of_the_day = path_for_quote_of_the_day[0].td.text
-author_for_quote_of_the_day = path_for_quote_of_the_day[1].td.a.text
-quote_of_the_day_tuple = (quote_of_the_day.rstrip(),author_for_quote_of_the_day) 
+# scrapping for quote of the day
+p = soup.find_all('table')[2].find_all('tbody')[2].find_all('tr')
+quote_of_the_day = p[0].td.text
+author_for_quote_of_the_day = p[1].td.a.text
+
 
 def get_quote_of_the_day():
-    return quote_of_the_day_tuple
-
+    return (quote_of_the_day.rstrip(), author_for_quote_of_the_day)

@@ -51,17 +51,14 @@ def get_quotes(person, category):
     # Getting the quote of the related author
     get_quote = soup_author.find_all('a', attrs={'title': 'view quote'})
     quote_list = []
-    big_list = []
     for i in range(count):
-        quote_list.append(get_quote[i].text)
-        big_list.append(quote_list)
+        quote_list.append((get_quote[i].text, person))
 
     if len(quote_list) == 0:
         return('''Oops! It seems that there are no quotes of the author of that
                 category.
                 \nYou may consider changing the category or the author ''')
-    quote_list.append(person)
-
+    quote_list = tuple(quote_list)
     return(quote_list)
 
 
