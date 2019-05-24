@@ -19,50 +19,49 @@ def get_quotes(person: (None, str) = None,
     scrape_url = "https://www.curatedquotes.com/topic/"
     url_raw_data = requests.get(scrape_url)
     data = url_raw_data.text
-    
-    #checks for category in all categories 
-    soup=BeautifulSoup(data,'html5lib')
-    categories=[]
-    for tag in soup.findAll('div',attrs={'class':"topics"}):
-        if tag.findAll('a',href=True)!= None:
-            for element in tag.findAll('a',href=True):
+
+    # checks for category in all categories
+    soup = BeautifulSoup(data, 'html5lib')
+    categories = []
+    for tag in soup.findAll('div', attrs={'class': "topics"}):
+        if tag.findAll('a', href=True) is not None:
+            for element in tag.findAll('a', href=True):
                 print(element.text.strip())
                 categories.append(element.text.strip())
 
     if category not in categories:
         return quotes_list
 
-    #in all the quotes pf that category it searches for author 
+    # in all the quotes pf that category it searches for author
 
     else:
-        scrape_url='https://www.curatedquotes.com'
-        for tag in soup.findAll('div',attrs={'class':"topics"}):
-            if tag.findAll('a',href=True)!= None:
-                for element in tag.findAll('a',href=True) :
-                    if element.text.strip()==category:
-                        scrape_url+=element["href"]
+        scrape_url = 'https://www.curatedquotes.com'
+        for tag in soup.findAll('div', attrs={'class': "topics"}):
+            if tag.findAll('a', href=True) is not None:
+                for element in tag.findAll('a', href=True):
+                    if element.text.strip() == category:
+                        scrape_url += element["href"]
                         break
 
         url_raw_data = requests.get(scrape_url)
         data = url_raw_data.text
-        soup=BeautifulSoup(data,'html5lib')
+        soup = BeautifulSoup(data, 'html5lib')
         for block in soup.findAll('blockquote'):
             quotes.append(block.p.text.strip())
 
-        quotes_list=[]
+        quotes_list = []
         print(len(quotes))
         for quote in quotes:
-            ls=quote.split('.')
-            if len(ls)<2:
+            ls = quote.split('.')
+            if len(ls) < 2:
                 continue
-            if quote.find(person)!=-1:
-                for i in range(len(ls)-1):
-                    quote+=ls[i]
+            if quote.find(person) != -1:
+                for i in range(len(ls) - 1):
+                    quote += ls[i]
 
-                quotes_list.append((person,quote))
+                quotes_list.append((person, quote))
 
         return quotes_list
-    
 
 
 def get_quote(person: (None, str) = None,
@@ -85,7 +84,3 @@ def get_quote(person: (None, str) = None,
         random_number = random.randint(0, length - 1)
 
     return quotes[random_number]
-
-
-
-
