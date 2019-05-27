@@ -45,11 +45,10 @@ def get_quotes(person, category):
         a = i.text
         value += 1
         r = a.lower()
-        r = r.replace("\n",'')
+        r = r.replace("\n", '')
         if category in r:
             check = True
             count.append(value)
-            
     # Getting the quote of the related author
     get_quote = soup_author.find_all('a', attrs={'title': 'view quote'})
     quote_list = []
@@ -122,6 +121,3 @@ def get_quote_of_the_day():
 
     # Removes any extra space
     return (quote_of_the_day, author_name)
-
-
-
