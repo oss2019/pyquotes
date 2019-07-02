@@ -29,7 +29,6 @@ def get_author_link(person):
 def get_quotes(person, category):
     """
     This function returns all the quotes that matches the input.
-
     :param person:   Name of the person e.g. Albert Einstein
     :param category: Category of quote e.g. Motivational
     :param return:   List of tuples [(quote, author_of_the_quote), ..]
@@ -39,21 +38,23 @@ def get_quotes(person, category):
     soup_author = BeautifulSoup(respone_author.content, 'html5lib')
     categories = soup_author.find_all('div', class_='kw-box')
     check = False
-    count = 0
+    count = []
+    value = 0
+    category = category.lower()
     for i in categories:
         a = i.text
-        replace = a.replace("\n", '')
-        r = replace.lower()
+        value += 1
+        r = a.lower()
+        r = r.replace("\n", '')
         if category in r:
             check = True
-            count += 1
-
+            count.append(value)
     # Getting the quote of the related author
     get_quote = soup_author.find_all('a', attrs={'title': 'view quote'})
     quote_list = []
     big_list = []
-    for i in range(count):
-        quote_list.append(get_quote[i].text)
+    for i in count:
+        quote_list.append(get_quote[i-1].text)
         big_list.append(quote_list)
 
     if len(quote_list) == 0:
@@ -69,7 +70,6 @@ def get_quote(person, category):
     """
     This function take a category and a person as a input and returns
     a random quote which matches the input.
-
     :param person:   Name of the person e.g. Albert Einstein
     :param category: Category of quote e.g. Motivational
     :param return:   A tuple (quote, author_of_the_quote)
@@ -81,17 +81,16 @@ def get_quote(person, category):
         return("No quotes found of that category")
     else:
         random_number = random.randint(0, length - 1)
-        list = []
-        list.append(quotes[random_number])
-        list.append(person)
+        quote_author_list = []
+        quote_author_list.append(quotes[random_number])
+        quote_author_list.append(person)
 
-        return(tuple(list))
+        return(tuple(quote_author_list))
 
 
 def get_quote_of_the_day():
     """
     This fuction returns quote of the day.
-
     :param return: A tuple (quote, author_of_the_quote)
     """
     URL = "https://www.brainyquote.com/quote_of_the_day"
