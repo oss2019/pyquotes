@@ -1,4 +1,1 @@
-__all__ = ["pyquotes",
-             "brainyquote",
-             "scrapper",
-              ]
+__all__ = ["pyquotes", "brainyquote", "scrapper"]
