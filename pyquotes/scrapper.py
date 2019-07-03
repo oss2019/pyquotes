@@ -85,7 +85,7 @@ def scraper(url, test):
                     if inner_index == 0:
                         # Cleaning the quote and using the encode decode to remove Unicode escape chracters
                         cleaned_quote = (
-                            quote[2 : len(quote) - 2]
+                            quote[2: len(quote) - 2]
                             .encode("utf-8")
                             .decode("unicode-escape")
                         )
@@ -99,7 +99,7 @@ def scraper(url, test):
                     if inner_index == 0:
                         # Cleaning the name of the author and using the encode decode to remove Unicode escape chracters
                         cleaned_author = (
-                            author[2 : len(author) - 2]
+                            author[2: len(author) - 2]
                             .encode("utf-8")
                             .decode("unicode-escape")
                         )
