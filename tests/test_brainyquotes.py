@@ -2,7 +2,7 @@ import requests
 
 
 class TestBrainyQuotes:
-    def TestBrainyQuotes():
+    def TestBrainyQuotesUp():
 
         r = requests.head("https://www.brainyquote.com/")
         print("Website Up")
@@ -10,4 +10,4 @@ class TestBrainyQuotes:
 
 
 if __name__ == "__main__":
-    TestBrainyQuotes.TestBrainyQuotes()
+    TestBrainyQuotes.TestBrainyQuotesUp()
