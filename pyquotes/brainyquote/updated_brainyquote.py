@@ -5,7 +5,7 @@ import re
 import random
 
 # This function returns the link to be scraped for the author.
-# For example if the author is Bill Gates then url at brainyquote
+# for example if the author is Bill Gates then url at brainyquote
 # will be "https://www.brainyquote.com/authors/bill_gates"
 
 
