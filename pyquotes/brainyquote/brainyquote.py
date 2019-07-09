@@ -122,3 +122,16 @@ def get_quote_of_the_day():
 
     # Removes any extra space
     return (quote_of_the_day, author_name)
+
+
+
+def get_topic_quotes(type, number_of_quotes=1):
+    url = "http://www.brainyquote.com/quotes/topics/topic_" + type + ".html"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+    quotes = []
+    for quote in soup.find_all('a', {'title': 'view quote'}):
+        quotes.append(quote.contents[0])
+    random.shuffle(quotes)
+    result = quotes[:number_of_quotes]
+    return result
