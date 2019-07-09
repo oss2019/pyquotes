@@ -4,6 +4,8 @@
 [![Pull Requests](https://img.shields.io/github/issues-pr-closed/oss2019/pyquotes.svg?style=flat-square)](https://github.com/oss2019/pyquotes/pulls) 
 [![License](https://img.shields.io/apm/l/vim-mode.svg?style=flat-square)](https://github.com/oss2019/pyquotes/blob/master/LICENSE) [![Gitter](https://img.shields.io/badge/chat-on%20gitter-ff006f.svg?style=flat-square)](https://gitter.im/oss2019/pyquotes)
 
+---
+
 This is an API in python3 to get quotes.
 
 ## Plan
@@ -17,7 +19,7 @@ Functionalities to be supported are:
 
 ### Phase 2
 
-Convert this into a pip package.
+Convert this into a pip package. Read more about `pip` [here](https://www.w3schools.com/python/python_pip.asp). 
 
 ### Phase 3
 
