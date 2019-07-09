@@ -25,6 +25,7 @@ Guide on creating a `pip` package [here](https://dzone.com/articles/executable-p
 ### Phase 3
 
 Use what we have built till now to make a twitter bot which will tweet quotes everyday.
+Guide on creating a twitter bot [here](https://learn.g2.com/how-to-make-a-twitter-bot)
 
 ## Contribution Guidelines
 
