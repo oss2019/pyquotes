@@ -14,12 +14,13 @@ This is an API in python3 to get quotes.
 The idea is to use scrap the quotes from various websites ([BrainyQuote](https://www.brainyquote.com/),[quoteload](https://www.quoteload.com/)). We will use [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) for this.<br />
 To get started with this you can watch a small tutorial [here](https://www.youtube.com/watch?v=ng2o98k983k).<br />
 Functionalities to be supported are:
-* Get quotes from particular topic, categories.
-* Get quotes from particular person.
+* Get quotes from particular topic, categories. (love, classics, passion)
+* Get quotes from particular person. (George Orwell, Stephen King, J.K Rowling, etc)
 
 ### Phase 2
 
 Convert this into a pip package. Read more about `pip` [here](https://www.w3schools.com/python/python_pip.asp). 
+Guide on creating a `pip` package [here](https://dzone.com/articles/executable-package-pip-install)
 
 ### Phase 3
 
