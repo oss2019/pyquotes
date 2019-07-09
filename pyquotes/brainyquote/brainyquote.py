@@ -29,7 +29,6 @@ def get_author_link(person):
 def get_quotes(person, category):
     """
     This function returns all the quotes that matches the input.
-
     :param person:   Name of the person e.g. Albert Einstein
     :param category: Category of quote e.g. Motivational
     :param return:   List of tuples [(quote, author_of_the_quote), ..]
@@ -69,7 +68,6 @@ def get_quote(person, category):
     """
     This function take a category and a person as a input and returns
     a random quote which matches the input.
-
     :param person:   Name of the person e.g. Albert Einstein
     :param category: Category of quote e.g. Motivational
     :param return:   A tuple (quote, author_of_the_quote)
@@ -91,7 +89,6 @@ def get_quote(person, category):
 def get_quote_of_the_day():
     """
     This fuction returns quote of the day.
-
     :param return: A tuple (quote, author_of_the_quote)
     """
     URL = "https://www.brainyquote.com/quote_of_the_day"
@@ -121,4 +118,4 @@ def get_quote_of_the_day():
     author_name = author_name.replace(' ', '')
 
     # Removes any extra space
-    return (quote_of_the_day, author_name)
+    return(quote_of_the_day, author_name)
