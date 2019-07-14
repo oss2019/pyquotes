@@ -26,7 +26,7 @@ def get_author_link(person):
     return author_url_link
 
 
-def get_quotes(person, category = None):
+def get_quotes(person, category=None):
     """
     This function returns all the quotes that matches the input.
     If category is not specified then it returns all the quotes
@@ -42,12 +42,13 @@ def get_quotes(person, category = None):
     all_quotes_list = []
 
     if category is None:
-        get_all_quotes = soup_author.find_all('a', attrs={'title':'view quote'})
+        get_all_quotes = soup_author.find_all('a',
+                                              attrs={'title': 'view quote'})
         for i in range(len(get_all_quotes)):
             all_quotes_list.append(get_all_quotes[i].text)
         all_quotes_list.append(person)
         return all_quotes_list
-        
+
     categories = soup_author.find_all('div', class_='kw-box')
     check = False
     count = 0
@@ -79,7 +80,7 @@ def get_quotes(person, category = None):
 def get_quote(person, category=None):
     """
     This function take a category and a person as a input and returns
-    a random quote which matches the input. 
+    a random quote which matches the input.
     :param person:   Name of the person e.g. Albert Einstein
     :param category: Category of quote e.g. Motivational
     :param return:   A tuple (quote, author_of_the_quote)
@@ -131,5 +132,3 @@ def get_quote_of_the_day():
 
     # Removes any extra space
     return(quote_of_the_day, author_name)
-
-print(get_quote('Albert Einstein'))
