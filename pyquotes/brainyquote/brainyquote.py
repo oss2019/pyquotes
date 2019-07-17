@@ -26,10 +26,11 @@ def get_author_link(person):
     return author_url_link
 
 
-def get_quotes(person, category):
+def get_quotes(person, category=None):
     """
     This function returns all the quotes that matches the input.
-
+    If category is not specified then it returns all the quotes
+    of the person.
     :param person:   Name of the person e.g. Albert Einstein
     :param category: Category of quote e.g. Motivational
     :param return:   List of tuples [(quote, author_of_the_quote), ..]
@@ -37,6 +38,17 @@ def get_quotes(person, category):
     URL = "https://www.brainyquote.com/authors/" + get_author_link(person)
     respone_author = requests.get(URL)
     soup_author = BeautifulSoup(respone_author.content, 'html5lib')
+
+    all_quotes_list = []
+
+    if category is None:
+        get_all_quotes = soup_author.find_all('a',
+                                              attrs={'title': 'view quote'})
+        for i in range(len(get_all_quotes)):
+            all_quotes_list.append(get_all_quotes[i].text)
+        all_quotes_list.append(person)
+        return all_quotes_list
+
     categories = soup_author.find_all('div', class_='kw-box')
     check = False
     count = 0
@@ -65,11 +77,10 @@ def get_quotes(person, category):
     return(quote_list)
 
 
-def get_quote(person, category):
+def get_quote(person, category=None):
     """
     This function take a category and a person as a input and returns
     a random quote which matches the input.
-
     :param person:   Name of the person e.g. Albert Einstein
     :param category: Category of quote e.g. Motivational
     :param return:   A tuple (quote, author_of_the_quote)
@@ -91,7 +102,6 @@ def get_quote(person, category):
 def get_quote_of_the_day():
     """
     This fuction returns quote of the day.
-
     :param return: A tuple (quote, author_of_the_quote)
     """
     URL = "https://www.brainyquote.com/quote_of_the_day"
@@ -121,4 +131,4 @@ def get_quote_of_the_day():
     author_name = author_name.replace(' ', '')
 
     # Removes any extra space
-    return (quote_of_the_day, author_name)
+    return(quote_of_the_day, author_name)
