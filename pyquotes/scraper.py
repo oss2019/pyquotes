@@ -10,8 +10,12 @@ day_quote = "https://www.brainyquote.com/quote_of_the_day"
 
 
 def get_quotes(person: (None, str) = None, category: (None, str) = None):
+    """
+        usage : call with person name and category of quotes
+        returns : a list of tuple (quote,author)
+    """
     # function called without any argument:
-    if isinstance(person, type(None)) and isinstance(category, type(None)):
+    if person is None and category is None:
         print("too few arguments to get quotes")
         return None  # can be modified to throw some exception instead
 
@@ -26,7 +30,7 @@ def get_quotes(person: (None, str) = None, category: (None, str) = None):
             tag = interest.p.find("a", class_="category-tag").text
             result.append((quote, person))
 
-    if not isinstance(category, type(None)):  # category's name is provided
+    if category is not None::  # category's name is provided
         category_link = requests.get(
             parent_link + "/quotes/categories/" + category
         ).text
@@ -65,4 +69,4 @@ def random_quote():
 
 # print(get_quote(person="mahatma gandhi",category="legal"))
 # print(get_quote(input('enter the name : ').strip()))
-print(random_quote())
+# print(random_quote())
