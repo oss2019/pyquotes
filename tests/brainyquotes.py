@@ -57,8 +57,11 @@ class TestBrainyQuotes:
         else:
             print("website is not reached")
 
+    def runner():
+        TestBrainyQuotes.TestBrainyQuotesUp()
+        TestBrainyQuotes.testauthorchecking()
+        TestBrainyQuotes.testsearchisenable()
+
 
 if __name__ == "__main__":
-    TestBrainyQuotes.TestBrainyQuotesUp()
-    TestBrainyQuotes.testauthorchecking()
-    TestBrainyQuotes.testsearchisenable()
+    TestBrainyQuotes.runner()
