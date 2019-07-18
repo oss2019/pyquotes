@@ -4,8 +4,7 @@
 # 2. Get the quote of the day
 
 
-def get_quotes(person: (None, str) = None,
-               category: (None, str) = None):
+def get_quotes(person: (None, str) = None, category: (None, str) = None):
     """
     This function returns all the quotes that matches the input.
 
@@ -16,8 +15,7 @@ def get_quotes(person: (None, str) = None,
     pass
 
 
-def get_quote(person: (None, str) = None,
-              category: (None, str) = None):
+def get_quote(person: (None, str) = None, category: (None, str) = None):
     """
     This function take a category and a person as a input and returns
     a random quote which matches the input.
