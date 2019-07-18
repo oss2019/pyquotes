@@ -1,1 +1,1 @@
-__all__ = ["pyquotes", "brainyquote","quotery"]
+__all__ = ["pyquotes", "brainyquote", "quotery"]
