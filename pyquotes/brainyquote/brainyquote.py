@@ -81,11 +81,11 @@ def get_quote(person, category):
         return("No quotes found of that category")
     else:
         random_number = random.randint(0, length - 1)
-        list = []
-        list.append(quotes[random_number])
-        list.append(person)
+        quote_with_author_list = []
+        quote_with_author_list.append(quotes[random_number])
+        quote_with_author_list.append(person)
 
-        return(tuple(list))
+        return(tuple(quote_with_author_list))
 
 
 def get_quote_of_the_day():
