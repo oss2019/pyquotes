@@ -20,20 +20,20 @@ def get_quotes(category):
     # Grabbing all tables inside table
     list_table = table.find_all('table')
 
-    # Grabbing all quotes in variable list1
-    list1 = list_table[2].find_all('p')
+    # Grabbing all quotes in variable list_paragraph_tag
+    list_paragraph_tag = list_table[2].find_all('p')
     quote_list = []
-    del list1[0]
+    del list_paragraph_tag[0]
 
-    if len(list1) <= 1:
+    if len(list_paragraph_tag) <= 1:
         # In case no quote exis for that category
         return('''Oops! It seems that there are no quotes for that
                 category.
                 \nYou may consider changing the category ''')
     else:
         for j in range(2):
-            del list1[len(list1)-1]
-        for i in list1:
+            del list_paragraph_tag[len(list_paragraph_tag)-1]
+        for i in list_paragraph_tag:
             a = i.text
             replace = a.replace("\'", '')
             replace = replace.replace("\xa0\xa0", " ")
@@ -59,16 +59,16 @@ def get_quote(category):
     quotes = get_quotes(category)
     length = len(quotes)
     if(length == 1):
-        list = []
-        list.append(quotes[0])
-        return(tuple(list))
+        quote_with_author_list = []
+        quote_with_author_list.append(quotes[0])
+        return(tuple(quote_with_author_list))
     else:
         random_number = random.randint(0, length - 1)
-        list = []
-        list.append(quotes[random_number])
-        list.append(person)
+        quote_with_author_list = []
+        quote_with_author_list.append(quotes[random_number])
+        quote_with_author_list.append(person)
 
-        return(tuple(list))
+        return(tuple(quote_with_author_list))
 
 
 # quotes = get_quotes("power")
