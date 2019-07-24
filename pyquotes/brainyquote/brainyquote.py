@@ -53,14 +53,13 @@ def get_quotes(person, category):
     quote_list = []
     big_list = []
     for i in range(count):
-        quote_list.append(get_quote[i].text)
+        quote_list.append((get_quote[i].text, person))
         big_list.append(quote_list)
 
     if len(quote_list) == 0:
         return('''Oops! It seems that there are no quotes of the author of that
                 category.
                 \nYou may consider changing the category or the author ''')
-    quote_list.append(person)
 
     return(quote_list)
 
