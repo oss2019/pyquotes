@@ -37,15 +37,17 @@ def get_quotes(person, category):
     URL = "https://www.brainyquote.com/authors/" + get_author_link(person)
     respone_author = requests.get(URL)
     soup_author = BeautifulSoup(respone_author.content, 'html5lib')
-    all_quotes = list(soup_author.find_all('div', 
-                {'class': ['m-brick grid-item boxy bqQt qll-new-bg', 'm-brick grid-item boxy bqQt']}
-                ))
+    all_quotes = list(soup_author.find_all('div',
+                                           {'class': [
+                                               'm-brick grid-item boxy bqQt qll-new-bg', 'm-brick grid-item boxy bqQt']}
+                                           ))
     quote_list = []
     for quote in all_quotes:
-        categories_a_tag = quote.find_all('a', {'class':'qkw-btn btn btn-xs oncl_list_kc'})
+        categories_a_tag = quote.find_all(
+            'a', {'class': 'qkw-btn btn btn-xs oncl_list_kc'})
         for category_a_tag in categories_a_tag:
             if((category_a_tag.text).lower() == category.lower()):
-                quote_a_tag = quote.find_all('a', {'title':'view quote'})
+                quote_a_tag = quote.find_all('a', {'title': 'view quote'})
                 quote_list.append((quote_a_tag[0].text, person))
                 break
 
