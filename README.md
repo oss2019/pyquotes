@@ -37,6 +37,15 @@ We would love contributions from everyone. Some general guidelines are:
 * It is recommended to have a single commit for a task.
 * Please see that all the tests are passing before asking for a review on a PR.
 
+## Dependencies
+
+- fuzzywuzzy
+- requests
+- beautifulsoup4
+- html5lib
+
+To install all dependencies at once run `pip install -r requirements.txt`
+
 ## Mentors
 
 -   [Akshat Karani](https://github.com/akshatkarani)
