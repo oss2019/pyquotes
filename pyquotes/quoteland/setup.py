@@ -1,7 +1,8 @@
 from setuptools import setup
 
+
 def readme():
-    with open('README.md') as f:
+    with open("README.md") as f:
         README = f.read()
     return README
 
@@ -23,7 +24,7 @@ setup(
     ],
     packages=["quoteland"],
     include_package_data=True,
-    install_requires=["requests","bs4"],
+    install_requires=["requests", "bs4"],
     entry_points={
         # "console_scripts": [
         #     "weather-reporter=weather_reporter.cli:main",
