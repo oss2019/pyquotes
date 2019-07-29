@@ -16,7 +16,6 @@ def get_quotes(person: (None, str) = None, category: (None, str) = None):
     """
     # function called without any argument:
     if person is None and category is None:
-        # function called without any argument:
         print("too few arguments to get quotes")
         return None  # can be modified to throw some exception instead
 
@@ -24,16 +23,14 @@ def get_quotes(person: (None, str) = None, category: (None, str) = None):
     if person is not None:  # person's name is provided
         # formatting the name to fit as per URL
         Person = "-".join(person.strip().split())
-        person_link = requests.get(
-            parent_link + "/quotes/authors/" + Person).text
+        person_link = requests.get(parent_link + "/quotes/authors/" + Person).text
         soup_obj = BeautifulSoup(person_link, "lxml")
         for interest in soup_obj.find_all("div", class_="card-body text-center"):
             quote = interest.p.find("a", class_="href-noshow").text
             tag = interest.p.find("a", class_="category-tag").text
             result.append((quote, person))
 
-    if category is not None: 
-         # category's name is provided
+    if category is not None::  # category's name is provided
         category_link = requests.get(
             parent_link + "/quotes/categories/" + category
         ).text
@@ -72,5 +69,4 @@ def random_quote():
 
 # print(get_quote(person="mahatma gandhi",category="legal"))
 # print(get_quote(input('enter the name : ').strip()))
-
 # print(random_quote())
