@@ -16,7 +16,7 @@ def get_quotes(person: (None, str) = None, category: (None, str) = None):
     """
     # function called without any argument:
     if person is None and category is None:
-    # function called without any argument:
+        # function called without any argument:
         print("too few arguments to get quotes")
         return None  # can be modified to throw some exception instead
 
@@ -31,8 +31,7 @@ def get_quotes(person: (None, str) = None, category: (None, str) = None):
             tag = interest.p.find("a", class_="category-tag").text
             result.append((quote, person))
 
-
-    if category is not None::  # category's name is provided
+    if category is not None:  # category's name is provided
         category_link = requests.get(
             parent_link + "/quotes/categories/" + category
         ).text
@@ -73,4 +72,3 @@ def random_quote():
 # print(get_quote(input('enter the name : ').strip()))
 
 # print(random_quote())
-
