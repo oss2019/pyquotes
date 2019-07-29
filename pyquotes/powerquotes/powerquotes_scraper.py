@@ -45,7 +45,6 @@ def get_quotes(category):
         for h in range(int(len(quote_list)/2)):
             main_list.append((quote_list[h+t], quote_list[h+1+t]))
             t = t+1
-
         return main_list
 
 
@@ -59,16 +58,10 @@ def get_quote(category):
     quotes = get_quotes(category)
     length = len(quotes)
     if(length == 1):
-        quote_with_author_list = []
-        quote_with_author_list.append(quotes[0])
-        return(tuple(quote_with_author_list))
+        return(quotes[0])
     else:
         random_number = random.randint(0, length - 1)
-        quote_with_author_list = []
-        quote_with_author_list.append(quotes[random_number])
-        quote_with_author_list.append(person)
-
-        return(tuple(quote_with_author_list))
+        return(quotes[random_number])
 
 
 # quotes = get_quotes("power")
