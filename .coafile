@@ -1,4 +1,6 @@
 [PEP8]
 files = **/*.py
-bears = PEP8Bear
+bears = PEP8Bear, QuotesBear
 use_spaces = True
+language = python
+preferred_quotation = '
