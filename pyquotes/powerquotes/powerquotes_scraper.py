@@ -36,8 +36,8 @@ def get_quotes(category):
         for i in list_paragraph_tag:
             a = i.text
             replace = a.replace("\'", '')
-            replace = replace.replace("\xa0\xa0", " ")
-            replace = replace.replace("\xa0", " ")
+            replace = replace.replace('\xa0\xa0', ' ')
+            replace = replace.replace('\xa0', ' ')
             quote_list.append(replace)
         quote_list = [k for k in quote_list if k != 'Read complete Powerquote']
         main_list = []

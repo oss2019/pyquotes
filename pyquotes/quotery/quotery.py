@@ -46,8 +46,8 @@ def get_quote_of_the_day():
     """
     page_number = random.randint(1, 912)
     test = 1
-    url = "https://api.quotery.com/wp-json/quotery/v1/quotes?orderby=popular&page=" + \
-        str(page_number)+"&per_page=120"
+    url = 'https://api.quotery.com/wp-json/quotery/v1/quotes?orderby=popular&page=' + \
+        str(page_number)+'&per_page=120'
     quote, authors, test = scraper(url, test)
     quotes_and_authors = selection_general(quote, authors)
     index = random.randint(0, len(quotes_and_authors)-1)
@@ -63,18 +63,18 @@ def scraper(url, test):
     soup = BeautifulSoup(source, 'lxml')
     para = soup.p.text
     # all these random split is how the data was arranged in the source from which it had to be stripped
-    para = para.split("\"quotes\"")
+    para = para.split('\'quotes\'')
     if len(para) > 1:
         para = para[1]
     else:
         para = para[0]
     count = 0
-    para = para.split("\"status\"")
+    para = para.split('\'status\'')
     if len(para) == 1:
         para = para[0]
-        quote_list = para.split("\"body\"")
+        quote_list = para.split('\'body\'')
         for index, element in enumerate(quote_list):
-            quote_element = element.split("\"images\"")
+            quote_element = element.split('\'images\'')
             if index > 0:
                 for inner_index, quote in enumerate(quote_element):
                     if inner_index == 0:
@@ -83,9 +83,9 @@ def scraper(url, test):
                             quote)-2].encode('utf-8').decode('unicode-escape')
                         quotes.append(cleaned_quote)
 
-        author_list = para.split("\"name\"")
+        author_list = para.split('\'name\'')
         for index, element in enumerate(author_list):
-            author_element = element.split("\"slug\"")
+            author_element = element.split('\'slug\'')
             if index > 0:
                 for inner_index, author in enumerate(author_element):
                     if inner_index == 0:
@@ -123,8 +123,8 @@ def crawler(user_author=None, user_topic=None):
         authors = []
         quote = []
         quotes_and_authors = []
-        punctuations = (",", "-", "'", ".", '"', '_', '\\', '“', '”', '*')
-        new_word = ""
+        punctuations = (',', '-', '\'', '.', '"', '_', '\\', '“', '”', '*')
+        new_word = ''
         expected_author = []
         expected_topic = []
 
@@ -150,13 +150,13 @@ def crawler(user_author=None, user_topic=None):
                     for index, char in enumerate(topic):
                         if char not in punctuations:
                             new_word = new_word + char
-                    new_word = '-'.join(new_word.split(" "))
+                    new_word = '-'.join(new_word.split(' '))
                     i = 1
                     test = 1
                     while test:
-                        url = ("https://api.quotery.com/wp-json/quotery/v1/quotes?topic="
-                               + new_word + "&page=" + str(i) + "&per_page=120")
-                        new_word = ""
+                        url = ('https://api.quotery.com/wp-json/quotery/v1/quotes?topic='
+                               + new_word + '&page=' + str(i) + '&per_page=120')
+                        new_word = ''
                         i += 1
                         for author in expected_author:
                             quote, authors, test = scraper(url, test)
@@ -173,10 +173,10 @@ def crawler(user_author=None, user_topic=None):
                         for index, char in enumerate(topic):
                             if char not in punctuations:
                                 new_word = new_word + char
-                        new_word = '-'.join(new_word.split(" "))
-                        url = ("https://api.quotery.com/wp-json/quotery/v1/quotes?topic="
-                               + new_word + "&page=" + str(i) + "&per_page=120")
-                        new_word = ""
+                        new_word = '-'.join(new_word.split(' '))
+                        url = ('https://api.quotery.com/wp-json/quotery/v1/quotes?topic='
+                               + new_word + '&page=' + str(i) + '&per_page=120')
+                        new_word = ''
                         i += 1
                         quote, authors, test = scraper(url, test)
                         quotes_and_authors += selection_general(quote, authors)
@@ -195,14 +195,14 @@ def crawler(user_author=None, user_topic=None):
                     for index, char in enumerate(author):
                         if char not in punctuations:
                             new_word = new_word + char
-                    new_word = '-'.join(new_word.split(" "))
+                    new_word = '-'.join(new_word.split(' '))
                     while test:
-                        url = ("https://api.quotery.com/wp-json/quotery/v1/quotes?author="
-                               + new_word + "&page=" + str(i) + "&per_page=120")
+                        url = ('https://api.quotery.com/wp-json/quotery/v1/quotes?author='
+                               + new_word + '&page=' + str(i) + '&per_page=120')
                         i += 1
                         quote, authors, test = scraper(url, test)
                         quotes_and_authors += selection_general(quote, authors)
-                    new_word = ""
+                    new_word = ''
                     return quotes_and_authors
             else:
                 # Too Few Arguments. Throw random quotes>?

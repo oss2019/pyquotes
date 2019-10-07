@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
-source = requests.get("https://en.wikiquote.org/wiki/Main_Page").text
-soup = BeautifulSoup(source, "lxml")
+source = requests.get('https://en.wikiquote.org/wiki/Main_Page').text
+soup = BeautifulSoup(source, 'lxml')
 # names is  list of all names with links in the main page of wikiquote
 names_path = soup.find('div', class_='mw-parser-output').find_all('div')[11]
 names = names_path.find_all('p')[1].find_all('a')
@@ -12,9 +12,9 @@ def get_quotes(person):
     quotes_by_author = list()
     for name in names:
         if (person == name.text.lower()):
-            link = "https://en.wikiquote.org" + name['href']
+            link = 'https://en.wikiquote.org' + name['href']
             link = requests.get(link).text
-            soup_for_indiv = BeautifulSoup(link, "lxml")
+            soup_for_indiv = BeautifulSoup(link, 'lxml')
             q = soup_for_indiv.find_all('div', class_='mw-parser-output')[0]
             quotes = q.find_all('ul')
             for quote in quotes:
