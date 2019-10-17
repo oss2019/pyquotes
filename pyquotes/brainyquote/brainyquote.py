@@ -34,7 +34,7 @@ def get_quotes(person, category):
     :param category: Category of quote e.g. Motivational
     :param return:   List of tuples [(quote, author_of_the_quote), ..]
     """
-    URL = "https://www.brainyquote.com/authors/" + get_author_link(person)
+    URL = 'https://www.brainyquote.com/authors/' + get_author_link(person)
     respone_author = requests.get(URL)
     soup_author = BeautifulSoup(respone_author.content, 'html5lib')
     categories = soup_author.find_all('div', class_='kw-box')
@@ -42,7 +42,7 @@ def get_quotes(person, category):
     count = 0
     for i in categories:
         a = i.text
-        replace = a.replace("\n", '')
+        replace = a.replace('\n', '')
         r = replace.lower()
         if category in r:
             check = True
@@ -77,7 +77,7 @@ def get_quote(person, category):
     length = len(quotes)
     if(length == 0):
         # In case no quote of the author exist for that category.
-        return("No quotes found of that category")
+        return('No quotes found of that category')
     else:
         random_number = random.randint(0, length - 1)
         quote_with_author_list = []
@@ -93,7 +93,7 @@ def get_quote_of_the_day():
 
     :param return: A tuple (quote, author_of_the_quote)
     """
-    URL = "https://www.brainyquote.com/quote_of_the_day"
+    URL = 'https://www.brainyquote.com/quote_of_the_day'
 
     # Sending a HTTP request to the specified URL and saving the response
     # from server in a response object called response.

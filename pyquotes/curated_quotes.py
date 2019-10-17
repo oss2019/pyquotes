@@ -16,14 +16,14 @@ def get_quotes(person: (None, str) = None,
     :param return:   List of tuples [(quote, author_of_the_quote), ..]
 
     """
-    scrape_url = "https://www.curatedquotes.com/topic/"
+    scrape_url = 'https://www.curatedquotes.com/topic/'
     url_raw_data = requests.get(scrape_url)
     data = url_raw_data.text
 
     # checks for category in all categories
     soup = BeautifulSoup(data, 'html5lib')
     categories = []
-    for tag in soup.findAll('div', attrs={'class': "topics"}):
+    for tag in soup.findAll('div', attrs={'class': 'topics'}):
         if tag.findAll('a', href=True) is not None:
             for element in tag.findAll('a', href=True):
                 print(element.text.strip())
@@ -36,11 +36,11 @@ def get_quotes(person: (None, str) = None,
 
     else:
         scrape_url = 'https://www.curatedquotes.com'
-        for tag in soup.findAll('div', attrs={'class': "topics"}):
+        for tag in soup.findAll('div', attrs={'class': 'topics'}):
             if tag.findAll('a', href=True) is not None:
                 for element in tag.findAll('a', href=True):
                     if element.text.strip() == category:
-                        scrape_url += element["href"]
+                        scrape_url += element['href']
                         break
 
         url_raw_data = requests.get(scrape_url)
@@ -79,7 +79,7 @@ def get_quote(person: (None, str) = None,
     length = len(quotes)
     if(length == 0):
         # In case no quote of the author exist for that category.
-        return("No such quote found for the author in that category")
+        return('No such quote found for the author in that category')
     else:
         random_number = random.randint(0, length - 1)
 

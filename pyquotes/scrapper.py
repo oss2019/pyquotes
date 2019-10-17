@@ -3,7 +3,7 @@ import requests
 import random
 
 # website used :
-parent_link = "https://www.quoteload.com"
+parent_link = 'https://www.quoteload.com'
 
 
 def get_quotes(person: (None, str) = None, category: (None, str) = None):
@@ -15,24 +15,24 @@ def get_quotes(person: (None, str) = None, category: (None, str) = None):
     result = []
     if not isinstance(person, type(None)):  # person's name is provided
         # formatting the name to fit as per URL
-        Person = "-".join(person.strip().split())
+        Person = '-'.join(person.strip().split())
         person_link = requests.get(
-            parent_link + "/quotes/authors/" + Person).text
+            parent_link + '/quotes/authors/' + Person).text
         soup_obj = BeautifulSoup(person_link, 'lxml')
-        for interest in soup_obj.find_all("div", class_="card-body text-center"):
-            quote = interest.p.find('a', class_="href-noshow").text
-            tag = interest.p.find('a', class_="category-tag").text
+        for interest in soup_obj.find_all('div', class_='card-body text-center'):
+            quote = interest.p.find('a', class_='href-noshow').text
+            tag = interest.p.find('a', class_='category-tag').text
             result.append((quote, person))
 
     if not isinstance(category, type(None)):  # category's name is provided
         category_link = requests.get(
-            parent_link + "/quotes/categories/" + category).text
+            parent_link + '/quotes/categories/' + category).text
         soup_obj = BeautifulSoup(category_link, 'lxml')
 
-        for interest in soup_obj.find_all("div", class_="card-body text-center"):
-            quote = interest.p.find('a', class_="href-noshow").text
-            tag = interest.p.find('a', class_="category-tag").text
-            author = interest.p.find('a', class_="quote-author").text
+        for interest in soup_obj.find_all('div', class_='card-body text-center'):
+            quote = interest.p.find('a', class_='href-noshow').text
+            tag = interest.p.find('a', class_='category-tag').text
+            author = interest.p.find('a', class_='quote-author').text
             if (quote, author) not in result:
                 result.append((quote, author))
 
